@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+body {
+  transition: background-color 0.5s ease; /* Adjust the duration and easing as needed */
+  overflow-x: hidden;
+}
+
+.scrolled {
+  background-color: rgb(63, 112, 149); /* Change to your desired color */
+}
