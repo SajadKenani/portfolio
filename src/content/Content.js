@@ -374,8 +374,8 @@ export const Content = () => {
 
                 { appearence4 &&
                 <div className="flex justify-center lg:justify-start" >
-                    <button id="myButton" className="mt-16 m-4 knowMore-btn" onClick={() => handleClick(1)}> Know more! </button>
-                    <button id="myButton" className="mt-16 m-4 hireMe-btn" onClick={() => usecontactme(true)}> Hire me! </button>
+                    <button id="myButton" className="mt-16 m-4 ml-0 knowMore-btn" onClick={() => handleClick(1)}> Know more! </button>
+                    <button id="myButton" className="mt-16 m-4 ml-0 hireMe-btn" onClick={() => usecontactme(true)}> Hire me! </button>
                 </div>
                 }
 
