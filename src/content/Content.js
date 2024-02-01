@@ -549,7 +549,7 @@ export const Content = () => {
                 </div>
 
                 <div style={{width: "93.5%"}} className="ml-4">
-                  <p className="font-semibold">Last Name</p>
+                  <p className="font-semibold">Email</p>
                   <input style={{width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px"}} />
                 </div>
 
