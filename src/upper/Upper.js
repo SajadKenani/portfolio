@@ -207,7 +207,7 @@ myFunction()
 
             <div className="mt-4 " style={{right: "0"}}>
             {localStorage.getItem("mommory") != "value" && <a className="box" onClick={() => window.location.reload()}>Skip Animation</a>}
-            { scrollY < 1700 ? 
+            { scrollY < 1500 ? 
             <a className="ml-6 box" style={{color: scrollY > 150 ? "#B3D5EE" : "#1F2C3C", borderColor: scrollY > 150 ? "#B3D5EE" : "#1F2C3C"}}> Ar </a> :
             <a className="ml-6 box" style={{color: "#1F2C3C", borderColor: "#1F2C3C"}}> Ar </a>}
             </div>
