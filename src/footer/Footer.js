@@ -38,7 +38,7 @@ export const Footer = () => {
             <div className="flex justify-center lg:justify-start mt-14">
                 <img className="icon  m-0 ml-0" src={instagramIcom} onClick={() => window.location.assign("https://www.instagram.com/____00boy/")}/>
                 <img className="linkedIcon  m-0 " src={linkedinIcom} onClick={() => window.location.assign("https://www.linkedin.com/in/sajad-kenani-518a8322a/")}/>
-                <img className="icon  m-0" src={twitterIcon} onClick={() => window.location.assign("https://www.linkedin.com/in/sajad-kenani-518a8322a/")}/>
+                <img className="icon  m-0" src={twitterIcon} onClick={() => window.location.assign("https://x.com/MRGolar?t=rFaB8INFwUtoB2BBWrv-5w&s=09")}/>
 
             </div>
 
