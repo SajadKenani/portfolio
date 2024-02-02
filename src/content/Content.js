@@ -416,7 +416,7 @@ export const Content = () => {
                       <div className="flex justify-center lg:justify-start">
                         <button
                           id="myButton"
-                          className="mt-16 m-4 ml-0 mr-0 knowMore-btn"
+                          className="mt-16 m-4 ml-0 mr-4 knowMore-btn"
                           onClick={() => handleClick(1)}
                         >
                           Learn more!
