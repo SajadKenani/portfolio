@@ -252,7 +252,7 @@ export const Content = () => {
           }
 
           const [scrolled, setScrolled] = useState(false);
-          const [myPadding, setmypadding] = useState(window.innerWidth > 1000 ? 1200 : 1700);
+          const [myPadding, setmypadding] = useState(window.innerWidth > 1000 ? 1200 : 1500);
         
           useEffect(() => {
             const handleScroll = () => {
@@ -272,15 +272,21 @@ export const Content = () => {
           }, []); // Empty dependency array means this effect runs once when the component mounts
         
           
-          // Change background color based on the scroll state
-          useEffect(() => {
-            if(document.querySelector(".myProjects"))
-            if (scrolled) {
-              document.querySelector(".myProjects").style.color = '#1F2C3C'; // Change to your desired color
-            } else {
-              document.querySelector(".myProjects").style.color = '#B3D5EE'; // Change to your desired color
-            }
-          }, [scrolled]);
+           // Change background color based on the scroll state
+           useEffect(() => {
+             const myProjectsElements = document.querySelectorAll(".myProjects");
+           
+             if (myProjectsElements) {
+               myProjectsElements.forEach((element) => {
+                 if (scrolled) {
+                   element.style.color = '#1F2C3C'; // Change to your desired color
+                 } else {
+                   element.style.color = '#B3D5EE'; // Change to your desired color
+                 }
+               });
+             }
+           }, [scrolled]);
+           
 
           const mouseEnterProject = (event) => {
             const element = document.querySelectorAll(".projectSquare-div");
@@ -347,246 +353,290 @@ export const Content = () => {
               });
             }
           };
+
+          // const sendEmail  = (e) => {
+          //   e.preventDefault();
+        
+          //   emailjs.sendForm('service_fv031td', 'template_bt0wkcx', form.current, 'j81jiCczsLIyLJjZr')
+          //     .then( async (result) => {
+          //         console.log(result.text);
+          //         usemessagesent(true);
+      
+          //         const myButton = document.getElementById('myButtonId');
+          //         if (myButton) {
+          //             myButton.disabled = true;
+          //             myButton.classList.replace("submitButton", "disabledSubmitButton");
+          //           }
+      
+                    
+                      
+      
+          //     }, (error) => {
+          //         console.log(error.text);
+          //     });
+          // };
           
 
          
     return (
         <ScrollProvider>
         <div id="mainSection">
-            <img style={{width: "100%", height: "700px", objectFit: "cover", position: "relative", zIndex: "32"}} id="myImage" className="-mt-2 image" src={mountain} />
-
-            {contactme &&
-            <div onClick={() => usecontactme(false)} className="flex justify-center outerFormPage" >
-                <div className="formPage" >
-
-                </div>
+   
+            <img
+            style={{
+              width: "100%",
+              height: "700px",
+              objectFit: "cover",
+              position: "relative",
+              zIndex: "32",
+              overflow: "hidden"
+            }}
+            id="myImage"
+            className="-mt-2 image"
+            src={mountain}
+          />
+         
+                 {contactme && (
+            <div onClick={() => usecontactme(false)} className="flex justify-center outerFormPage">
+              <div className="formPage"></div>
             </div>
-            }
+          )}
 
            { appearence &&
-            <div className="mainDiv" >
+            <><div className="mainDiv">
 
-            <div className="flex justify-center miniDiv" id="myMiniDiv" style={{position: 'absolute', zIndex: "324", marginTop: "-530px"}} > 
-            <div className="" >
-                { appearence1 && <h2  id="myH2" className="h2 text-4xl font-semibold text-center lg:text-start"> Hi, </h2> }
-                { appearence2 && <h2  id="myH3" className="h2 text-4xl font-semibold text-center lg:text-start"> I’m Sajad, </h2> }
-                { appearence3 && <h2  id="myH4" className="h2 text-4xl font-semibold text-center lg:text-start"> Front-End Developer! </h2> }
+              <div className="flex justify-center miniDiv" id="myMiniDiv" style={{ position: 'relative', zIndex: "37987924", marginTop: "-530px", zIndex: "243" }}>
+                <div style={{position: 'relative', width: "100%", zIndex: "243242"}}>
+                {appearence1 && <h2 id="myH2" className="h2 text-4xl font-semibold text-center lg:text-start"> Hi, </h2>}
+                {appearence2 && <h2 id="myH3" className="h2 text-4xl font-semibold text-center lg:text-start"> I’m Sajad, </h2>}
+                {appearence3 && <h2 id="myH4" className="h2 text-4xl font-semibold text-center lg:text-start"> Front-End Developer! </h2>}
 
-                { appearence4 &&
-                <div className="flex justify-center lg:justify-start" >
-                    <button id="myButton" className="mt-16 m-4 ml-0 knowMore-btn" onClick={() => handleClick(1)}> Know more! </button>
-                    <button id="myButton" className="mt-16 m-4 ml-0 hireMe-btn" onClick={() => usecontactme(true)}> Hire me! </button>
+
+                  {appearence4 && (
+                      <div className="flex justify-center lg:justify-start">
+                        <button
+                          id="myButton"
+                          className="mt-16 m-4 ml-0 mr-0 knowMore-btn"
+                          onClick={() => handleClick(1)}
+                        >
+                          Learn more!
+                        </button>
+                        <button
+                          id="myButton"
+                          className="mt-16 m-4 ml-0 mr-0 hireMe-btn"
+                          onClick={() => handleClick(3)}
+                        >
+                          Hire me!
+                        </button>
+                      </div>
+                    )}
+
                 </div>
-                }
+              </div>
 
-            </div>
-            </div>
+              <div className="flex justify-center mt-80">
+                <div className="line"></div>
+              </div>
 
-            <div className="flex justify-center mt-20" >
-              <div className="line"></div>
-            </div>
-
-           <div className={` grid lg:flex justify-center lg:justify-between pt-20 fade-up ${inView ? 'visible' : ''}`}  id="aboutMeSection" >
-            <div ref={ref} className=" mt-14 ml-0 lg:ml-4 "  >
-                 <h2 className="text-4xl font-semibold text-center lg:text-start text-white " style={{color: "#B3D5EE"}}> Who am I? </h2>
-                 <p className=" text-center lg:text-start p-4 lg:p-0 mt-10 fontP lg:mr-20" style={{color: "#809EB5"}}>{mainmessage.split(",").join("")}</p>
+              <div className={` grid lg:flex justify-center lg:justify-between pt-20 fade-up ${inView ? 'visible' : ''}`} id="aboutMeSection">
+                <div ref={ref} className=" mt-14 ml-0 lg:ml-4 ">
+                  <h2 className="text-4xl font-semibold text-center lg:text-start text-white " style={{ color: "#B3D5EE" }}> Who am I? </h2>
+                  <p className=" text-center lg:text-start p-4 lg:p-0 mt-10 fontP lg:mr-20" style={{ color: "#809EB5" }}>{mainmessage.split(",").join("")}</p>
 
 
 
-                 { button && <div className="flex justify-center lg:justify-start">
-                 <div className="flex justify-center lg:justify-start h-12   mt-10" >
-                    <button className=" cv-btn rounded" > CV/Resume </button>
-                 </div>
-                 </div>}
-            </div>
+                  {button && <div className="flex justify-center lg:justify-start">
+                    <div className="flex justify-center lg:justify-start h-12   mt-10">
+                      <button className=" cv-btn rounded"> CV/Resume </button>
+                    </div>
+                  </div>}
+                </div>
 
-            <div className=" mt-10">                 
-            {techparaone && <p className=" text-center lg:text-start p-4 lg:p-0 mt-6 fontP text-2xl fade" style={{color: "#809EB5"}}> Techniques I know  </p>}
-                 
-                 <div className=" pt-6 ">
+                <div className=" mt-10">
+                  {techparaone && <p className=" text-center lg:text-start p-4 lg:p-0 mt-6 fontP text-2xl fade myProjects" style={{ color: "#809EB5" }}> Techniques I know  </p>}
+
+                  <div className=" pt-6 ">
 
                     <div className="flex justify-center lg:justify-start">
-                    {myhtml && <div  className={ `fade p-3 pt-0 pb-1 text-white font-semibold rounded miniBox h-7 `} style={{backgroundColor:"#F55633", width: "fit-content"}}> HTML </div>}
-                    {mycss && <div  className={ `fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox`} style={{backgroundColor:"#30548D", width: "fit-content"}}> CSS </div>}
-                    {myjavascript && <div  className={ `fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7`} style={{backgroundColor:"#EB9B00", width: "fit-content"}}> JavaScript </div>}
-                    {myreact && <div  className={ `fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox`} style={{backgroundColor:"#335EF5", width: "fit-content"}}> React </div>}
+                      {myhtml && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded miniBox h-7 `} style={{ backgroundColor: "#F55633", width: "fit-content" }}> HTML </div>}
+                      {mycss && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox`} style={{ backgroundColor: "#30548D", width: "fit-content" }}> CSS </div>}
+                      {myjavascript && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7`} style={{ backgroundColor: "#EB9B00", width: "fit-content" }}> JavaScript </div>}
+                      {myreact && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox`} style={{ backgroundColor: "#335EF5", width: "fit-content" }}> React </div>}
                     </div>
 
-                    <div className="flex mt-2 justify-center lg:justify-start"> 
-                    {mybootstrap && <div  className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded  miniBox `} style={{backgroundColor:"#00518D", width: "fit-content"}}> BootStrap </div>}
-                    {mytailwind && <div  className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox `} style={{backgroundColor:"#33A3F5", width: "fit-content"}}> Tailwind </div>}
-                    {mycharp && <div  className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox `} style={{backgroundColor:"#285b23", width: "fit-content"}}> c# </div>}
+                    <div className="flex mt-2 justify-center lg:justify-start">
+                      {mybootstrap && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded  miniBox `} style={{ backgroundColor: "#00518D", width: "fit-content" }}> BootStrap </div>}
+                      {mytailwind && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox `} style={{ backgroundColor: "#33A3F5", width: "fit-content" }}> Tailwind </div>}
+                      {mycharp && <div className={`fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox `} style={{ backgroundColor: "#285b23", width: "fit-content" }}> c# </div>}
                     </div>
+                  </div>
+
+                  {techparatwo && <p className=" text-center lg:text-start p-4 lg:p-0 mt-10 fontP text-2xl fade myProjects" style={{ color: "#809EB5" }}> Techniques I'm Currently learning  </p>}
+
+                  <div className="flex justify-center lg:justify-start pt-6 ">
+                    {myapi && <div className="fade p-3 pt-0 pb-1 text-white font-semibold rounded miniBox " style={{ backgroundColor: "#30548D", width: "fit-content" }}> API </div>}
+                    {mysass && <div className="fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{ backgroundColor: "#33A3F5", width: "fit-content" }}> SCSS/SASS </div>}
+
+                  </div>
                 </div>
-
-                {techparatwo && <p className=" text-center lg:text-start p-4 lg:p-0 mt-10 fontP text-2xl fade" style={{color: "#809EB5"}}> Techniques I'm Currently learning  </p>}
-                 
-                 <div className="flex justify-center lg:justify-start pt-6 ">
-                    {myapi && <div className="fade p-3 pt-0 pb-1 text-white font-semibold rounded miniBox " style={{backgroundColor:"#30548D", width: "fit-content"}}> API </div>}
-                    {mysass && <div className="fade p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{backgroundColor:"#33A3F5", width: "fit-content"}}> SCSS/SASS </div>}
-   
-                </div>
-                </div>
-            </div>
-
-           <div className="flex justify-center mt-40 -mb-20">
-              <div className="line"></div>
-            </div>
-
-            <div className="d-flex justify-center mt-20  " style={{ paddingTop: "40px"}} id="projectsSection">
-                <h2 className="text-4xl font-semibold text-center lg:text-start pt-20 myProjects" style={{color: "#B3D5EE"}} > Projects I made </h2>
-        
-                   <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 `}>
-
-
-                        <div className=" justify-center mb-26 fade" >
-                        <div className="flex justify-center -mb-11 mt-6">
-                            <img className="w-28" src={inBoxImage} />  
-                        </div>
-                        <div className="0 projectSquare-div  pt-14" style={{cursor: "pointer"}} onClick={() => window.location.assign("https://inboxcompany.website/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
-                        <div className="0 flex justify-center -pt-4 "><p className="0 pt-0 font-light text-3xl myPara"> In Box Company </p> </div>
-                        <p className="0 p-6 pt-4 font-semibold para"> I played a pivotal role in the programming phase of this project, ensuring seamless functionality aligned with the designer's vision. </p> 
-                        <div className="0 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
-                           <div className="0 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{backgroundColor:"#335EF5", width: "fit-content"}}> React </div>
-                           <div className="0 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{backgroundColor:"#33A3F5", width: "fit-content"}}> Tailwind </div>
-                        </div>
-
-
-
-                        </div>
-                       </div>
-
-                       <div className="1 justify-center mb-12 fade">
-                        <div className="1 flex justify-center -mb-24">
-                            <img className="1 w-60" src={whiteTigerImage} />  
-                        </div>
-                        <div className="1 projectSquare-div  pt-14 d-2"  style={{cursor: "pointer"}} onClick={() => window.location.assign("https://whitetigerdrink.com/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
-                        <div className="1 flex justify-center -pt-4"><p className="1 pt-0 font-light text-3xl myPara"> White Tiger Drink </p> </div>
-                        <p className="1 p-6 pt-4 font-semibold para">  I took the lead in programming for this project, meticulously bringing the designer's vision to life with flawless execution and precision. </p> 
-                        <div className="1 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
-                           <div className="1 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{backgroundColor:"#335EF5", width: "fit-content"}}> React </div>
-                           <div className="1 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{backgroundColor:"#33A3F5", width: "fit-content"}}> Tailwind </div>
-                        </div>
-
-
-
-                        </div>
-                       </div>
-
-
-                       <div className=" justify-center mb-12 fade" >
-                        <div className="flex justify-center -mb-14 mt-1 lg:-mb-11 lg:mt-12">
-                            <img className="w-40" src={codeGxImage} />  
-                        </div>
-                        <div className="2 projectSquare-div  pt-14 d-3" style={{cursor: "pointer"}} onClick={() => window.location.assign("https://codegxiq.com/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}> 
-                        <div className="2 flex justify-center -pt-4"><p className="2 pt-0 font-light text-3xl myPara"> CodeGx Company </p> </div>
-                        <p className="2 p-6 pt-4 font-semibold para">  I collaborated with the CodeGx team to bring this website to life. While they handled the design, I took charge of the programming. </p> 
-                        <div className="2 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
-
-                           <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{backgroundColor:"#F55633", width: "fit-content"}}> HTML </div>
-                           <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{backgroundColor:"#00518D", width: "fit-content"}}> BootStrap </div>
-
-                           <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{backgroundColor:"#EB9B00", width: "fit-content"}}> JavaScript </div>
-                        
-                        </div>
-
-
-
-                        </div>
-                       </div>
-
-                            
-                       <div className=" justify-center mb-24 fade" >
-                        <div className="flex justify-center -mb-14 -mt-1">
-                            <img className="w-40" src={tntImage} />  
-                        </div>
-                        <div className="3 projectSquare-div  pt-14 pb-10 d-4" style={{cursor: "pointer"}} onClick={() => window.location.assign("https://sajadkenani.github.io/tntdecoration/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
-                        <div className="3 flex justify-center pt-2"><p className="3 pt-0 font-light text-3xl myPara"> TNTDecoration </p> </div>
-                        <p className="3 p-6 pt-4 font-semibold para"> I'm the creative force behind the design and programming of this website. Currently a work in progress, stay tuned for the exciting completion of this project!  </p> 
-                        <div className="3 flex justify-center  lg:p-3 ">
-                       
-                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{backgroundColor:"#335EF5", width: "fit-content"}}> React </div>
-                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{backgroundColor:"#00518D", width: "fit-content"}}> BootStrap </div>
-                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{backgroundColor:"#E41313", width: "fit-content"}}> Figma </div>
-                        
-                        </div>
-
-                        </div>
-                       </div>
-
-
-                   </div>
-                   
-   
-                   
-            </div>
-
-            <div className="flex justify-center mt-10">
-              <div className="line"></div>
-            </div>
-
-            <div className="grid lg:flex justify-between">
-              <div className="mt-20">
-              <h2 className="text-4xl font-semibold text-center lg:text-start text-white mt-10" style={{color: "#1F2C3C"}}> Contact me </h2>
-              <p className=" text-center lg:text-start mt-7 p-4 lg:p-0 mt-10 fontPP lg:mr-24" style={{color: "#1F2C3C"}}>Make sure to replace the User model with your actual model if it has a different name, and adjust the route and view names accordingly.   </p>
-              <div className="flex justify-center lg:justify-start mt-10">
-                <img className="w-10 h-10" style={{cursor: "pointer"}} src={linkedinIcom} onClick={() => window.location.assign("https://www.linkedin.com/in/sajad-kenani-518a8322a/")} /> 
-                <img className="w-10 h-9" style={{marginTop: "6px", cursor: "pointer"}} src={instagramIcom} onClick={() => window.location.assign("https://www.instagram.com/____00boy/")}/> 
-                <img className="w-10 h-10 "  style={{marginTop: "3px", cursor: "pointer"}} src={twitterIcon} onClick={() => window.location.assign("https://www.linkedin.com/in/sajad-kenani-518a8322a/")}/> 
-              </div>
               </div>
 
-              <div className="contactMainDiv">
-                <div className="flex justify-between p-4">
-                <div style={{width: "90%"}} className="pr-3">
-                  <p className="font-semibold">First Name</p>
-                  <input style={{width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px"}} />
-                </div>
-                <div style={{width: "90%"}}>
-                  <p className="font-semibold">Last Name</p>
-                  <input style={{width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px"}} />
-                </div>
-                </div>
+              <div className="flex justify-center mt-40 -mb-20">
+                <div className="line"></div>
+              </div>
 
-                <div style={{width: "93.5%"}} className="ml-4">
-                  <p className="font-semibold">Email</p>
-                  <input style={{width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px"}} />
-                </div>
+              <div className="d-flex justify-center mt-20  " style={{ paddingTop: "40px" }} id="projectsSection">
+                <h2 className="text-4xl font-semibold text-center lg:text-start pt-20 myProjects" style={{ color: "#B3D5EE" }}> Projects I made </h2>
 
-                <div style={{width: "93.5%"}} className="ml-4 mt-4">
-                  <p className="font-semibold">Message</p>
-                  <textarea style={{width: "100%", height: "150px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px"}} />
-                </div>
+                <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-16 `}>
 
-                <div className="flex justify-center lg:justify-start p-4 font-semibold"><button className="mySendButton"> Send! </button></div>
-                I won't recieve your message (still working on it)
+
+                  <div className=" justify-center mb-26 fade">
+                    <div className="flex justify-center -mb-11 mt-6">
+                      <img className="w-28" src={inBoxImage} />
+                    </div>
+                    <div className="0 projectSquare-div  pt-14" style={{ cursor: "pointer" }} onClick={() => window.location.assign("https://inboxcompany.website/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
+                      <div className="0 flex justify-center -pt-4 "><p className="0 pt-0 font-light text-3xl myPara"> In Box Company </p> </div>
+                      <p className="0 p-6 pt-4 font-semibold para"> I played a pivotal role in the programming phase of this project, ensuring seamless functionality aligned with the designer's vision. </p>
+                      <div className="0 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
+                        <div className="0 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{ backgroundColor: "#335EF5", width: "fit-content" }}> React </div>
+                        <div className="0 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{ backgroundColor: "#33A3F5", width: "fit-content" }}> Tailwind </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+                  <div className="1 justify-center mb-12 fade">
+                    <div className="1 flex justify-center -mb-24">
+                      <img className="1 w-60" src={whiteTigerImage} />
+                    </div>
+                    <div className="1 projectSquare-div  pt-14 d-2" style={{ cursor: "pointer" }} onClick={() => window.location.assign("https://whitetigerdrink.com/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
+                      <div className="1 flex justify-center -pt-4"><p className="1 pt-0 font-light text-3xl myPara"> White Tiger Drink </p> </div>
+                      <p className="1 p-6 pt-4 font-semibold para">  I took the lead in programming for this project, meticulously bringing the designer's vision to life with flawless execution and precision. </p>
+                      <div className="1 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
+                        <div className="1 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{ backgroundColor: "#335EF5", width: "fit-content" }}> React </div>
+                        <div className="1 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{ backgroundColor: "#33A3F5", width: "fit-content" }}> Tailwind </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+
+                  <div className=" justify-center mb-12 fade">
+                    <div className="flex justify-center -mb-14 mt-1 lg:-mb-11 lg:mt-12">
+                      <img className="w-40" src={codeGxImage} />
+                    </div>
+                    <div className="2 projectSquare-div  pt-14 d-3" style={{ cursor: "pointer" }} onClick={() => window.location.assign("https://codegxiq.com/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
+                      <div className="2 flex justify-center -pt-4"><p className="2 pt-0 font-light text-3xl myPara"> CodeGx Company </p> </div>
+                      <p className="2 p-6 pt-4 font-semibold para">  I collaborated with the CodeGx team to bring this website to life. While they handled the design, I took charge of the programming. </p>
+                      <div className="2 flex justify-center  pb-10 lg:pb-12 p-0 lg:p-4">
+
+                        <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{ backgroundColor: "#F55633", width: "fit-content" }}> HTML </div>
+                        <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{ backgroundColor: "#00518D", width: "fit-content" }}> BootStrap </div>
+
+                        <div className="2 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox h-7 " style={{ backgroundColor: "#EB9B00", width: "fit-content" }}> JavaScript </div>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+
+
+                  <div className=" justify-center mb-24 fade">
+                    <div className="flex justify-center -mb-14 -mt-1">
+                      <img className="w-40" src={tntImage} />
+                    </div>
+                    <div className="3 projectSquare-div  pt-14 pb-10 d-4" style={{ cursor: "pointer" }} onClick={() => window.location.assign("https://sajadkenani.github.io/tntdecoration/")} onMouseEnter={mouseEnterProject} onMouseLeave={mouseLeaveProject}>
+                      <div className="3 flex justify-center pt-2"><p className="3 pt-0 font-light text-3xl myPara"> TNTDecoration </p> </div>
+                      <p className="3 p-6 pt-4 font-semibold para"> I'm the creative force behind the design and programming of this website. Currently a work in progress, stay tuned for the exciting completion of this project!  </p>
+                      <div className="3 flex justify-center  lg:p-3 ">
+
+                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox" style={{ backgroundColor: "#335EF5", width: "fit-content" }}> React </div>
+                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{ backgroundColor: "#00518D", width: "fit-content" }}> BootStrap </div>
+                        <div className="3 p-3 pt-0 pb-1 text-white font-semibold rounded ml-2 miniBox " style={{ backgroundColor: "#E41313", width: "fit-content" }}> Figma </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
 
 
 
               </div>
-            </div>
 
-            
-           <div className="flex justify-center mt-20">
-              <div className="line"></div>
-            </div>
+              <div className="flex justify-center mt-10">
+                <div className="line"></div>
+              </div>
 
-
-            </div>}
-
-            <div className="mt-14 "  style={{paddingTop: "40px", paddingBottom: "80px", backgroundColor: "#1f2c3c"}}>
-               
-            <h2 className="text-4xl font-semibold text-center lg:text-start text-white companiesPadding" style={{color: "#B3D5EE"}}> Companies I worked with </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-2 divPadding" id="contactMeSection" >
-             
-                    <div className="flex justify-center"><img src={tntImage} className="h-28 mt-1" /></div>
-                    <div className="flex justify-center"><img src={boxImage} className="h-32" /></div>
-                    <div className="flex justify-center"><img src={malahihImage} className="h-20  mt-6" /></div>
-                    <div className="flex justify-center"><img src={codeGxImage} className="h-28 mt-2" /></div>
+              <div className="grid lg:flex justify-between" id="contactMeSection">
+                <div className="mt-20">
+                  <h2 className="text-4xl font-semibold text-center lg:text-start text-white mt-10" style={{ color: "#1F2C3C" }}> Contact me </h2>
+                  <p className=" text-center lg:text-start mt-7 p-4 lg:p-0 mt-10 fontPP lg:mr-24" style={{ color: "#1F2C3C" }}>Make sure to replace the User model with your actual model if it has a different name, and adjust the route and view names accordingly.   </p>
+                  <div className="flex justify-center lg:justify-start mt-10">
+                    <img className="w-10 h-10" style={{ cursor: "pointer" }} src={linkedinIcom} onClick={() => window.location.assign("https://www.linkedin.com/in/sajad-kenani-518a8322a/")} />
+                    <img className="w-10 h-9" style={{ marginTop: "6px", cursor: "pointer" }} src={instagramIcom} onClick={() => window.location.assign("https://www.instagram.com/____00boy/")} />
+                    <img className="w-10 h-10 " style={{ marginTop: "3px", cursor: "pointer" }} src={twitterIcon} onClick={() => window.location.assign("https://x.com/MRGolar?t=rFaB8INFwUtoB2BBWrv-5w&s=09")} />
+                  </div>
                 </div>
 
-                
-            </div>
+                <div className="contactMainDiv" >
+                  <div className="flex justify-between p-4">
+                    <div style={{ width: "90%" }} className="pr-3">
+                      <p className="font-semibold">First Name</p>
+                      <input style={{ width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px" }} />
+                    </div>
+                    <div style={{ width: "90%" }}>
+                      <p className="font-semibold">Last Name</p>
+                      <input style={{ width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px" }} />
+                    </div>
+                  </div>
+
+                  <div style={{ width: "93.5%" }} className="ml-4">
+                    <p className="font-semibold">Email</p>
+                    <input style={{ width: "100%", height: "50px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px" }} />
+                  </div>
+
+                  <div style={{ width: "93.5%" }} className="ml-4 mt-4">
+                    <p className="font-semibold">Message</p>
+                    <textarea style={{ width: "100%", height: "150px", backgroundColor: "#1f2c3c29", borderRadius: "3px", padding: "10px" }} />
+                  </div>
+
+                  <div className="flex justify-center lg:justify-start p-4 font-semibold"><button className="mySendButton"> Send! </button></div>
+                  I won't recieve your message (still working on it)
+
+
+
+                </div>
+              </div>
+
+
+              <div className="flex justify-center mt-20">
+                <div className="line"></div>
+              </div>
+
+
+            </div><div className="mt-14 " style={{ paddingTop: "40px", paddingBottom: "80px", backgroundColor: "#1f2c3c" }}>
+
+                <h2 className="text-4xl font-semibold text-center lg:text-start text-white companiesPadding" style={{ color: "#B3D5EE" }}> Companies I worked with </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-2 divPadding" >
+
+                  <div className="flex justify-center"><img src={tntImage} className="h-28 mt-1" /></div>
+                  <div className="flex justify-center"><img src={boxImage} className="h-32" /></div>
+                  <div className="flex justify-center"><img src={malahihImage} className="h-20  mt-6" /></div>
+                  <div className="flex justify-center"><img src={codeGxImage} className="h-28 mt-2" /></div>
+                </div>
+
+
+              </div></>}
         </div>
         </ScrollProvider>
     )
