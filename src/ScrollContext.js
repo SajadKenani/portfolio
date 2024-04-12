@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 
 const ScrollContext = createContext();
@@ -8,6 +8,8 @@ export const useScrollContext = () => {
 };
 
 export const ScrollProvider = ({ children }) => {
+  const [item, useitem] = useState("english"); // i want to use this in another script
+
   const scrollToSection = (num) => {
   if (num === 0){
     const element = document.getElementById("mainSection");
@@ -16,7 +18,7 @@ export const ScrollProvider = ({ children }) => {
         behavior: 'smooth',
         block: 'start',
       });
-      console.log("000")
+
     }}
 
    if (num === 1){
@@ -46,11 +48,18 @@ export const ScrollProvider = ({ children }) => {
                 block: 'start',
               });
         }}
+
+        if (num === 8){
+          if (item === "english"){
+          useitem("arabic")}
+          else {useitem("english")}
+        console.log(item)
+        }
    
   };
 
   return (
-    <ScrollContext.Provider value={{ scrollToSection }}>
+    <ScrollContext.Provider value={{ scrollToSection, item }}>
       {children}
     </ScrollContext.Provider>
   );

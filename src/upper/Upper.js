@@ -102,6 +102,21 @@ myFunction()
     window.location.reload()
 
   }
+  useEffect(() => {
+
+    setTimeout(() => {
+    handleClick(8)
+  }, 100);
+
+  setTimeout(() => {
+    handleClick(8)
+  }, 200);
+
+ 
+ }, [])
+
+
+  const { item } = useScrollContext();
 
   return (
     <>
@@ -113,12 +128,12 @@ myFunction()
         <div id="myNav" className="nav">
         <img id="myNavImage" src={backMenu} alt="Back Menu" className="w-12 a " onClick={leaveNav} />
 
-        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(0)} > Home </p>
-        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(1)}> About me </p>
-        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(2)}> My work </p>
-        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(3)}> Contact me </p>
+        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(0)} > {item === "arabic" ? "الرئيسية" : "Home"} </p>
+        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(1)}>  {item === "arabic" ? "من انا" : "About me"} </p>
+        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(2)}>  {item === "arabic" ? "اعمالي" : "My work"} </p>
+        <p className="text-start ml-6 mb-4 font-semibold" onClick={() => handleClickMobile(3)}>  {item === "arabic" ? "تواصل معي" : "Contact me"} </p>
 
-        <p className="text-start ml-6 mb-4 font-semibold mt-20"> Want to see the animation again? <span style={{color: "red", cursor: "pointer"}} onClick={reactivateAnimation}> Reactivate it! </span> </p>
+        
         </div>
         </>}
         <div
@@ -138,11 +153,11 @@ myFunction()
                 margin: "20px",
                 marginTop: "35px",
                 fontSize: "1rem",
-                color: scrollY > 150 ? "#B3D5EE" : "initial",
+                color: scrollY > 150 ? "#B3D5EE" : "initial",fontFamily: "Tajawal"
               }}
               onClick={() => handleClick(0)} 
             >
-              Home
+             {item === "arabic" ? "الرئيسية" : "Home"}
             </a>
           )}
           {appearance1 && (
@@ -153,11 +168,11 @@ myFunction()
                 margin: "20px",
                 marginTop: "35px",
                 fontSize: "1rem",
-                color: scrollY > 150 ? "#B3D5EE" : "initial",
+                color: scrollY > 150 ? "#B3D5EE" : "initial",fontFamily: "Tajawal"
               }}
               onClick={() => handleClick(1)} 
             >
-              About me
+              {item === "arabic" ? "من انا " : "About me"}
             </a>
           )}
           {appearance2 && (
@@ -169,10 +184,11 @@ myFunction()
                 marginTop: "35px",
                 fontSize: "1rem",
                 color: scrollY > 150 ? "#B3D5EE" : "initial",
+                fontFamily: "Tajawal"
               }}
               onClick={() => handleClick(2)}
             >
-              My work
+              {item === "arabic" ? " اعمالي " : "My work"}
             </a>
           )}
           {appearance3 && (
@@ -184,10 +200,11 @@ myFunction()
                 marginTop: "35px",
                 fontSize: "1rem",
                 color: scrollY > 150 ? "#B3D5EE" : "initial",
+                fontFamily: "Tajawal"
               }}
               onClick={() => handleClick(3)}
             >
-              Contact me
+               {item === "arabic" ? "تواصل معي " : "Contact me"}
             </a>
             
           )}
@@ -195,7 +212,7 @@ myFunction()
 
           <div className="mt-6 mr-5">
             {localStorage.getItem("mommory") != "value" && <a className="box" onClick={() => window.location.reload()}>Skip Animation</a>}
-            <a className="ml-6 box" style={{color: scrollY > 150 ? "#B3D5EE" : "#1F2C3C", borderColor: scrollY > 150 ? "#B3D5EE" : "#1F2C3C"}}>  Ar </a>
+            <a className="ml-6 box" style={{color: scrollY > 150 ? "#B3D5EE" : "#1F2C3C", borderColor: scrollY > 150 ? "#B3D5EE" : "#1F2C3C"}} onClick={() => handleClick(8)}>  {item === "arabic" ? "En" : "Ar"} </a>
           </div>
         </div>
 
@@ -208,8 +225,8 @@ myFunction()
             <div className="mt-4 " style={{right: "0"}}>
             {localStorage.getItem("mommory") != "value" && <a className="box" onClick={() => window.location.reload()}>Skip Animation</a>}
             { scrollY < 1500 ? 
-            <a className="ml-6 box" style={{color: scrollY > 150 ? "#B3D5EE" : "#1F2C3C", borderColor: scrollY > 150 ? "#B3D5EE" : "#1F2C3C"}}> Ar </a> :
-            <a className="ml-6 box" style={{color: "#1F2C3C", borderColor: "#1F2C3C"}}> Ar </a>}
+            <a className="ml-6 box" style={{color: scrollY > 150 ? "#B3D5EE" : "#1F2C3C", borderColor: scrollY > 150 ? "#B3D5EE" : "#1F2C3C"}} onClick={() => handleClick(8)}>  {item === "arabic" ? "En" : "Ar"} </a> :
+            <a className="ml-6 box" style={{color: "#1F2C3C", borderColor: "#1F2C3C"}} onClick={() => handleClick(8)}> {item === "arabic" ? "En" : "Ar"}</a>}
             </div>
 
           </div>
